@@ -7,8 +7,8 @@ import os
 import tokenizers
 
 from tqdm import tqdm
-from tokenizer import Tokenizer
-from feature_extractor import FeatureExtractor
+from fast_whisper.tokenizer import Tokenizer
+from fast_whisper.feature_extractor import FeatureExtractor
 
 import zlib
 import itertools
@@ -16,14 +16,14 @@ import itertools
 import huggingface_hub
 import bisect 
 
-from faster_whisper.vad import (
+from fast_whisper.vad import (
     SpeechTimestampsMap,
     VadOptions,
     collect_chunks,
     get_speech_timestamps,
 )
 
-from utils import (
+from fast_whisper.utils import (
     decode_audio,
     TranscriptionOptions, 
     TranscriptionInfo, 
@@ -319,7 +319,6 @@ class WhisperModel:
 
         else:
             speech_chunks = None
-            print(None)
 
         features = self.feature_extractor(audio)
 
@@ -384,13 +383,10 @@ class WhisperModel:
         while seek < content_frames:
             time_offset = seek * self.feature_extractor.time_per_frame
             segment = features[:, seek : seek + self.feature_extractor.nb_max_frames]
-            print(self.feature_extractor.nb_max_frames)
-            print(segment.shape)
             segment_size = min(
                 self.feature_extractor.nb_max_frames, content_frames - seek
             )
             segment_duration = segment_size * self.feature_extractor.time_per_frame
-            print(segment_duration)
         
 
             previous_tokens = all_tokens[prompt_reset_since:]
@@ -411,8 +407,6 @@ class WhisperModel:
                 compression_ratio,
             ) = self.generate_with_fallback(encoder_output, prompt, tokenizer, options)
 
-
-            print(options.no_speech_threshold)
             if options.no_speech_threshold is not None:
                 # no voice activity check
                 print(result.no_speech_prob,'>', options.no_speech_threshold)

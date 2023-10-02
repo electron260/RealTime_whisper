@@ -7,7 +7,11 @@ from typing import List, NamedTuple, Optional
 
 import numpy as np
 
-from faster_whisper.utils import get_assets_path
+#from fast_whisper.utils import get_assets_path
+def get_assets_path():
+    """Returns the path to the assets directory."""
+    return os.path.join(os.path.dirname(os.path.abspath(__file__)), "assets")
+
 
 
 # The code below is adapted from https://github.com/snakers4/silero-vad.
