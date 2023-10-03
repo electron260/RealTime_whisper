@@ -114,7 +114,7 @@ class WhisperModel:
         
         self.vad_activation = vad_activation 
 
-        model_path = os.getcwd() + '/models/' 
+        model_path = os.getcwd() + '/fast_whisper/models/' 
      
         if os.path.isdir(model_path + model_size_or_path):
             print("Loading the model ...")
@@ -123,7 +123,7 @@ class WhisperModel:
             
         else:
             print("Downloading the model ...")
-            os.mkdir(os.path.join(os.path.join(os.getcwd()+'/models', "medium.en")))
+            os.mkdir(os.path.join(os.path.join(model_path, "medium.en")))
             allow_patterns = [
             "config.json",
             "model.bin",
@@ -135,7 +135,7 @@ class WhisperModel:
                 "local_files_only": False,
                 "allow_patterns": allow_patterns,
                 "tqdm_class": disabled_tqdm,
-                "local_dir" : os.path.join(os.getcwd(), "models/medium.en"),
+                "local_dir" : os.path.join(model_path, "medium.en"),
                 "local_dir_use_symlinks" : False,         
             }
 
