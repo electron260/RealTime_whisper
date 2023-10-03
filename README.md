@@ -11,9 +11,10 @@ The Whisper size model used for all implementations is the `medium.en` model onl
 
 We conducted inference speed tests on the following audio files:
 
-1. **audio_file_1.wav**: This audio file is 5 sec long and has a size of 20 MB.
-2. **audio_file_2.wav**: This audio file is 10 sec long and has a size of 40 MB.
-3. **audio_file_3.wav**: This audio file is 30 sec long and has a size of 60 MB.
+1. **audio_file_1.wav**: This audio file is 3 sec long. 
+2. **audio_file_2.wav**: This audio file is 6 sec long.
+3. **audio_file_3.wav**: This audio file is 10 sec long.
+3. **audio_file_4.wav**: This audio file is 2min and 11sec long.
 
 Here are the results of the inference speed tests for each Whisper implementation:
 
