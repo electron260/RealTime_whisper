@@ -1,6 +1,6 @@
 # Comparing Whisper Inference Speed on Different Audio Files
 
-This README provides a comparison of the inference performance of three Whisper implementations: `whisper.cpp` (C++ implementation), `faster-whisper` (implementation using the Ctranslate2 encoder for faster inference with transformers), and `whisper-jax` (optimized JAX code for OpenAI's Whisper Model, largely built on the 🤗 Hugging Face Transformers Whisper implementation).
+This README provides a comparison of the inference performance of three Whisper implementations: `faster-whisper` (implementation using the Ctranslate2 encoder for faster inference with transformers) with and without voice activity detection, and the distiled model of Whisper, largely built on the 🤗 Hugging Face Transformers Whisper implementation).
 
 ## Introduction
 
@@ -20,10 +20,9 @@ Here are the results of the inference speed tests for each Whisper implementatio
 
 | Whisper Implementation     | Audio File 1 (3sec)  | Audio File 2 (6sec) | Audio File 3 (10sec ) | Audio File 4 (2min11)|
 |----------------------------|----------------------|----------------------|----------------------|----------------------|
-| `whisper.cpp`              | X ms                 | X ms                 | X ms                 | X ms                 |
-| `faster-whisper`           | 1.68 sec             | 1.58 sec             | 1.97 sec             | 20.75 sec            |
-| `faster-whisper [with VAD]`| 1.31 sec             | 1.68 sec             | 2.11 sec             | 23.74 sec            |
-| `whisper-jax`              | X ms                 | X ms                 | X ms                 | X ms                 |
+| `faster-whisper`           | 1.17 sec             | 1.64 sec             | 2.04 sec             | 20.78 sec            |
+| `faster-whisper [with VAD]`| 1.36 sec             | 1.69 sec             | 2.14 sec             | 23.22 sec            |
+| `distiled-whisper`              | 1.77 sec                 | 1.42 sec                | 1.46 sec                 | XXX                 |
 
 The above table shows the average inference time for each implementation on the specified audio files. Smaller values indicate faster inference times.
 
